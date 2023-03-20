@@ -6,6 +6,23 @@ class AddEvent {
         }
         return this.#instance;
     }
+asdfasdf
+    addEventCheckBox() {
+        const checkButtons = document.querySelectorAll(".check-button");
+        const texts = document.querySelectorAll(".text");
+        const todoList = TodoService.getInstance().todoList;
+
+        for(let i = 0; i < checkButtons.length; i++){
+            checkButtons[i].onclick = () => {
+                if(checkButtons[i].checked){
+                    texts[i].style.textDecoration = 'line-through';
+
+                }else {
+
+                }
+            }
+        }
+    }   
 
     addEventInputButtonClick() {
        const mainInputButton = document.querySelector(".main-input-button");
@@ -17,10 +34,8 @@ class AddEvent {
     }
     
     addEventRemoveTodoClick() {
-     
         const removeButtons = document.querySelectorAll(".remove-button");
         removeButtons.forEach((removeButton, index) => {
-            alert()
             removeButton.onclick = () => {
                 ModalService.getInstance().showRemoveModal(index);
             }
@@ -42,11 +57,16 @@ class TodoService {
     todoList = null;
 
     constructor() {
-        if(localStorage.getItem('todoList') == null) {
+        if(localStorage.getItem('todo-list') == null) {
             this.todoList = new Array();
         }else {
-            this.todoList = JSON.parse(localStorage.getItem('todoList'));
+            this.todoList = JSON.parse(localStorage.getItem('todo-list'));
         }
+    }
+
+    updateLocalStorage() {
+        localStorage.setItem('todo-list', JSON.stringify(this.todoList));
+        this.loadTodoList();
     }
 
     addTodo() {
@@ -70,6 +90,7 @@ class TodoService {
         }
 
         this.todoList.push(todoObj);
+        this.updateLocalStorage();
         this.loadTodoList();
      }
 
@@ -89,14 +110,15 @@ class TodoService {
                     <button type="button" class="edit-button"><i class="fa-solid fa-pen"></i>
                     </button>
                 </div>
-                <div class=".content-footer">
+                <div>
                     <button type="button" class="remove-button"><i class="fa-solid fa-circle-minus"></i>
                     </button>
                 </div>
             </li>
                 `;
         });
-
+        
+        AddEvent.getInstance().addEventCheckBox();
         AddEvent.getInstance().addEventRemoveTodoClick();
      }
 
