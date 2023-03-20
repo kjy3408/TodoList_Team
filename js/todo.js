@@ -18,7 +18,7 @@ class AddEvent {
                     texts[i].style.textDecoration = 'line-through';
 
                 }else {
-
+                    texts[i].style.textDecoration = 'none';
                 }
             }
         }
