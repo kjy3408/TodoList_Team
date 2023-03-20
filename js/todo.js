@@ -6,7 +6,7 @@ class AddEvent {
         }
         return this.#instance;
     }
-asdfasdf
+
     addEventCheckBox() {
         const checkButtons = document.querySelectorAll(".check-button");
         const texts = document.querySelectorAll(".text");
@@ -40,6 +40,17 @@ asdfasdf
                 ModalService.getInstance().showRemoveModal(index);
             }
         });
+    }
+
+    addEventModifyOkClick() {
+        const editButtons = document.querySelectorAll(
+            ".edit-button"
+          );
+          editButtons.forEach((editButton, index) => {
+            editButton.onclick = () => {
+              ModalService1.getInstance().showModifyModal(index);
+            };
+          });
     }
 
 }
@@ -120,6 +131,7 @@ class TodoService {
         
         AddEvent.getInstance().addEventCheckBox();
         AddEvent.getInstance().addEventRemoveTodoClick();
+        AddEvent.getInstance().addEventModifyOkClick();
      }
 
 
