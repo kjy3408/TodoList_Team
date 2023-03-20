@@ -15,6 +15,17 @@ class AddEvent {
         mainTodoInput.value = ``;
        }
     }
+    
+    addEventRemoveTodoClick() {
+     
+        const removeButtons = document.querySelectorAll(".remove-button");
+        removeButtons.forEach((removeButton, index) => {
+            alert()
+            removeButton.onclick = () => {
+                ModalService.getInstance().showRemoveModal(index);
+            }
+        });
+    }
 
 }
 
@@ -36,7 +47,6 @@ class TodoService {
         }else {
             this.todoList = JSON.parse(localStorage.getItem('todoList'));
         }
-        this.loadTodoList();
     }
 
     addTodo() {
@@ -79,13 +89,15 @@ class TodoService {
                     <button type="button" class="edit-button"><i class="fa-solid fa-pen"></i>
                     </button>
                 </div>
-                <div>
+                <div class=".content-footer">
                     <button type="button" class="remove-button"><i class="fa-solid fa-circle-minus"></i>
                     </button>
                 </div>
             </li>
                 `;
         });
+
+        AddEvent.getInstance().addEventRemoveTodoClick();
      }
 
 
