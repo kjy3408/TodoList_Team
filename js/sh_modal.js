@@ -16,6 +16,15 @@ class ModalEvent {
         }
     }
 
+    addEventAllClearOkClick() {
+        const modalOkButton = document.querySelector(".modal-ok-button");
+        modalOkButton.onclick = () => {
+            TodoService.getInstance().todoList = new Array();
+            TodoService.getInstance().updateLocalStorage();
+            ModalServive.getInstance().closeModal();
+        }
+    }
+
     addEventCancelClick() {
         const modalCancelButton = document.querySelector(".modal-cancel-button");
         modalCancelButton.onclick = () => {
@@ -59,6 +68,25 @@ class ModalService {
             </div>
         `;
         ModalEvent.getInstance().addEventRemoveOkClick(removeIndex);
+        ModalEvent.getInstance().addEventCancelClick();
+        this.showModal();
+    }
+
+    showAllClearModal() {
+        const modalSection = document.querySelector(".modal-section");
+        modalSection.innerHTML = `
+        <div class="modal-header">
+                <h1 class="modal-title">LIST 삭제</h1>
+            </div>
+            <div class="modal-main">
+                <p class="modal-message" style="red">전체삭제 하시겠습니까?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="modal-ok-button">확인</button>
+                <button type="button" class="modal-cancel-button">취소</button>
+            </div>
+        `;
+        ModalEvent.getInstance().addEventAllClearOkClick();
         ModalEvent.getInstance().addEventCancelClick();
         this.showModal();
     }
