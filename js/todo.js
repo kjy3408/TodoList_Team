@@ -15,7 +15,7 @@ class AddEvent {
         for(let i = 0; i < checkButtons.length; i++){
             if(checkButtons[i].checked){
                 texts[i].style.textDecoration = 'line-through';
-
+                
             }else {
                 texts[i].style.textDecoration = 'none';
             }
@@ -23,25 +23,11 @@ class AddEvent {
                 if(checkButtons[i].checked){
                     texts[i].style.textDecoration = 'line-through';
                     todoList[i].checked = true;
-
+                    TodoService.getInstance().addTodo();
+            
                 }else {
                     texts[i].style.textDecoration = 'none';
                     todoList[i].checked = false;
-                }
-            }
-        }
-    }
-
-    addEventSelectClear() {
-        const selectClear = document.querySelector(".select-clear");
-        const checkButtons = document.querySelectorAll(".check-button");
-        const todoList = TodoService.getInstance().todoList;
-        selectClear.onclick = () => {
-            for(let i = 0; i < checkButtons.length; i++){
-                if(todoList[i].checked){
-                    ModalService.getInstance().showRemoveModal();
-                    // TodoService.getInstance().updateLocalStorage();
-                    // ModalServive.getInstance().closeModal();
                 }
             }
         }
@@ -152,6 +138,7 @@ class TodoService {
         mainTodoUl.innerHTML = ``;
         this.todoList.forEach(todoObj => {
             mainTodoUl.innerHTML += `
+            <div class="todo-date">${todoObj.todoDate} / ${todoObj.todoDateTime}</div>
             <li class="main-todo-li">
                 <div class="main-todo-div">
                     <input type="checkbox" class="check-button" ${todoObj.checked ? "checked" : ""}>

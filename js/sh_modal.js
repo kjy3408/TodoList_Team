@@ -70,6 +70,7 @@ class ModalService {
         ModalEvent.getInstance().addEventRemoveOkClick(removeIndex);
         ModalEvent.getInstance().addEventCancelClick();
         this.showModal();
+        
     }
 
     showAllClearModal() {
@@ -89,6 +90,7 @@ class ModalService {
         ModalEvent.getInstance().addEventAllClearOkClick();
         ModalEvent.getInstance().addEventCancelClick();
         this.showModal();
+        
     }
 
 }
