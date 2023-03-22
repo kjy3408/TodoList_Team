@@ -208,15 +208,21 @@ class TodoService {
      }
 
       nowTime() {
+        const convertDay = (day) => {
+            return day == 0 ? '일' :
+                   day == 1 ? '월' :
+                   day == 2 ? '화' :
+                   day == 3 ? '수' :
+                   day == 4 ? '목' :
+                   day == 5 ? '금' : '토';
+        }
         const nowTime = document.querySelector(".now-time");
         const updateNowDate = () => {
             const nowDate = new Date();
-            this.todoList.forEach(date => {
-                nowTime.innerHTML = `
-                    <h1 class="now-time">${nowDate.toLocaleTimeString()}</h1>
-                    <h1 class="d-time">${date.todoDate}</h1>
-                `;
-            });
+            nowTime.innerHTML = `
+                <h1 class="now-time">${nowDate.toLocaleTimeString()}</h1>
+                <h1 class="d-time">${nowDate.getFullYear()}.${nowDate.getMonth() + 1}.${nowDate.getDate()}.${convertDay(nowDate.getDay())}</h1>
+            `;
         }
         const throttleUpdateNowDate = this.throttle(updateNowDate, 1000);
         setInterval(throttleUpdateNowDate, 1);
