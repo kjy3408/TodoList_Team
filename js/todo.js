@@ -146,8 +146,8 @@ class TodoService {
      }
      
      loadTodoList() {
-       this.goToTime();
-
+        this.goToTime();
+        this.nowTime();
         const mainTodoUl = document.querySelector(".main-todo-ul");
         mainTodoUl.innerHTML = ``;
         this.todoList.forEach(todoObj => {
@@ -179,19 +179,36 @@ class TodoService {
         AddEvent.getInstance().addEventSelectClear();
      }
 
+     throttle(func, limit) {
+        let inThrottle;
+        return function () {
+          const context = this;
+          const args = arguments;
+          if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => {
+              inThrottle = false;
+            }, limit);
+          }
+        };
+      }
+
      goToTime() {
         const nowTime = document.querySelector(".now-time");
-        setInterval(() => {
+        const updateNowTime = () => {
             const nowDate = new Date();
             nowTime.innerHTML = `
                 <h1 class="d-time">${nowDate.toLocaleTimeString()}</h1>
             `;
-        }, 1000);
+        }
+        const throttledUpdateNowTime = this.throttle(updateNowTime, 1000);
+        setInterval(throttledUpdateNowTime, 1000);
      }
 
-     nowTime() {
+      nowTime() {
         const nowTime = document.querySelector(".now-time");
-        setInterval(() => {
+        const updateNowDate = () => {
             const nowDate = new Date();
             this.todoList.forEach(date => {
                 nowTime.innerHTML = `
@@ -202,9 +219,10 @@ class TodoService {
                     <h1 class="d-time">${date.todoDate}</h1>
                 </div>
                 `;
-            }, 1);
-
-            })
+            });
+        }
+        const throttleUpdateNowDate = this.throttle(updateNowDate, 1000);
+        setInterval(throttleUpdateNowDate, 1000);
      }
 
 }
