@@ -68,9 +68,13 @@ class AddEvent {
     addEventInputButtonClick() {
        const mainInputButton = document.querySelector(".main-input-button");
        mainInputButton.onclick = () => {
-        TodoService.getInstance().addTodo();
-        const mainTodoInput = document.querySelector(".main-todo-input");
-        mainTodoInput.value = ``;
+        const mainTodoInput = document.querySelector(".main-input");
+        if(mainTodoInput.value.trim() !== "") {
+            TodoService.getInstance().addTodo();
+            mainTodoInput.value = ``;
+        } else {
+            alert("입력값이 없습니다.");
+        }
        }
     }
     
@@ -106,7 +110,6 @@ class TodoService {
     clearIndex = new Array();
 
     constructor() {
-        this.nowTime();
         if(localStorage.getItem('todo-list') == null) {
             this.todoList = new Array();
         }else {
@@ -175,7 +178,7 @@ class TodoService {
         AddEvent.getInstance().addEventModifyOkClick();
         AddEvent.getInstance().addEventAllClear();
         AddEvent.getInstance().addEventSelectClear();
-     }
+    }
 
      throttle(func, limit) {
         let inThrottle;

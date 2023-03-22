@@ -33,12 +33,12 @@
     height: 68px;
     background-color: #9c88ff;
     right: -80px;
-    z-index: -1;
+    /* z-index: 999; */
     transition: right 0.5s ease;
 }          /* 수정 : option-box 추가(기존의 all-clear-box를 담고 있는 div) */
 
 .option-box-hidden {
-    right: 0px;
+    display: none;
 }          /* 수정 : option-box를 숨겨주는 기능 */
 
 .all-clear-box {
@@ -63,6 +63,7 @@
     border: none;
     position: absolute;
     right: 10px;
+    z-index: 999;
     background-color: #9c88ff;
 }          /* 수정 : main-option-button 설정 추가 */
 

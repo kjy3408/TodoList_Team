@@ -1,6 +1,7 @@
 window.onload = () => {
-    TodoService.getInstance().goToTime();
+
     TodoService.getInstance().nowTime();
+    AsideEvent.getInstance().addEventShowMenuButton();
     AddEvent.getInstance().addEventInputButtonClick();
     AddEvent.getInstance().addEventInputKeyUp();
 
