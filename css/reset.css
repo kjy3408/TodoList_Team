@@ -1,7 +1,11 @@
+/* 수정 : 폰트 변경 */
+@import url('https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Jua&display=swap');
+
 * {
     box-sizing: border-box;
     color: #121212;
     font-size: 14px;
+    font-family: 'Jua', sans-serif;
 }
 
 body {

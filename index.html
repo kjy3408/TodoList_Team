@@ -21,13 +21,22 @@
     </main>
     <main class="main-container">
         <div class="main-box">
-            <header class="main-header"><h1 class="main-title">일정관리</h1></header>
-            <div class="all-clear-box"> 
+            <header class="main-header">
+                <h1 class="main-title">TO-DO LIST</h1>
+                <button class="main-option-button"><i class="fa-solid fa-bars"></i></button>
+                <div class="option-box option-box-hidden">
+                    <div class="all-clear-box">
+                        <button class="select-clear"><i class="fa-solid fa-check-to-slot"></i></button>
+                        <button class="all-clear"><i class="fa-solid fa-trash-arrow-up"></i></button>
+                    </div>
+                </div>
+            </header>
+            <!-- <div class="all-clear-box"> 
                 <button type="button" class="select-clear">선택삭제</button>
                 <button type="button" class="all-clear">전체삭제</button>
-            </div>
+            </div> -->
             <div class="main-todo-input">
-                <input type="text" class="main-input" placeholder="할 일을 입력하세요">
+                <input type="text" class="main-input" placeholder="Create Your List">
                 <button class="main-input-button">+</button>
             </div>
         </div>
@@ -55,7 +64,7 @@
     </main>
     <div class="modal-container modal-hidden">
         <div class="modal-section">
-            <div class="modal-header">
+            <!-- <div class="modal-header">
                 <h1 class="modal-title">LIST 수정</h1>
             </div>
             <div class="modal-main">
@@ -64,12 +73,12 @@
             <div class="modal-footer">
                 <button type="button" class="modal-ok-button">수정</button>
                 <button type="button" class="modal-cancel-button">취소</button>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="modal-container modal-hidden">
         <div class="modal-section">
-            <div class="modal-header">
+            <!-- <div class="modal-header">
                 <h1 class="modal-title">LIST 삭제</h1>
             </div>
             <div class="modal-main">
@@ -78,7 +87,7 @@
             <div class="modal-footer">
                 <button type="button" class="modal-ok-button">확인</button>
                 <button type="button" class="modal-cancel-button">취소</button>
-            </div>
+            </div> -->
         </div>
     </div>
     <script src="./js/todo.js"></script>
