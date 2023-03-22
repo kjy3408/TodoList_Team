@@ -4,55 +4,119 @@
     border: 2px solid #dbdbdb;
     width: 512px;
     height: 513px;
-    background-color: white;
-    overflow: hidden;
-}
+    border-radius: 10px;
+    /* background-color: white; */
+    background-color: #9c88ff;
+    /* overflow: hidden; */
+}          /* 수정 : border-radius 10px추가 , 배경색 변경, overflow 주석처리 */
 
 .main-header {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
     height: 64px;
     background-color: #9c88ff;
-}
+}          /* 수정 : border-radius 10px추가 */
+
+.option-box {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #dbdbdb;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    width: 80px;
+    height: 68px;
+    background-color: #9c88ff;
+    right: -80px;
+    z-index: -1;
+    transition: right 0.5s ease;
+}          /* 수정 : option-box 추가(기존의 all-clear-box를 담고 있는 div) */
+
+.option-box-hidden {
+    right: 0px;
+}          /* 수정 : option-box를 숨겨주는 기능 */
+
+.all-clear-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}          /* 수정 : 선택삭제와 전체삭제 버튼이 있는 div */
+
+.all-clear-box button {
+    display: flex;
+    border: none;
+    background-color: #9c88ff;
+}          /* 수정 : 선택삭제, 전체삭제 버튼 설정 */
 
 .main-title {
-    font-size: 24px;
+    font-size: 34px;
     color: white;
-}
+}          /* 수정 : font-size 변경 */
+
+.main-option-button {
+    display: flex;
+    border: none;
+    position: absolute;
+    right: 10px;
+    background-color: #9c88ff;
+}          /* 수정 : main-option-button 설정 추가 */
+
+.fa-bars {
+    font-size: 28px;
+    color: white;
+}          /* 수정 : main-option-button icon 설정 추가 */
 
 
-.all-clear {
+/* .all-clear {
     background-color: gray;
     height: 30px;
     
-}
+} */
 
 .main-todo-input{
     display: flex;
-    justify-content: space-between;
-    
-}
+    /* justify-content: space-between; */
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 20px;
+    width: 300px;
+    height: 43px;
+    overflow: hidden;
+}          /* 수정 : alitgn-,margin,border-radius,overflow 추가, justify 값 변경 */
 
 .main-input {
     padding: 8px;
-    width: 456px;
+    /* width: 456px; */
+    text-align: center;
+    width: 250px;
     height: 43px;
     background-color: #4e4e4e;
     font-size: 20px;
-}
+}          /* 수정 : text-align 추가, width 변경 */
 
 input::placeholder{
     color: rgb(214, 210, 210)
-}
+}      
 
 .main-input-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 10px;
     border: none;
-    padding: 0px 16px;
-    background-color: #868e96;
+    height: 43px;
+    /* padding: 0px 16px; */
+    padding: 5px 16px 0px;
+    background-color: #4e4e4e;
     font-size: 34px;
     color: white;
-}
+}          /* 수정 : display,justify,align,line-h,height 추가, padding,background 값 변경 */
 
 .check-button {
     display: flex;
@@ -69,12 +133,14 @@ input::placeholder{
     border-bottom: 1px solid #121212;
     display: flex;
     align-items: center;
+    border-radius: 10px;
     padding: 16px ;
     padding-top: 0px;
     width: 100%;
     height: 80px;
+    background-color: white;
 
-}
+}          /* 수정 : border-radius, background 추가 */
 
 .check-button {
     display: flex;

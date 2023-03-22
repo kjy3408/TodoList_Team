@@ -54,7 +54,7 @@ class ModalService1 {
         modalContainer.classList.add("modal-hidden");
       }
 
-      showModifyModal(removeIndex) {
+      showRemoveModal(removeIndex) {
         const todoObj = TodoService.getInstance().todoList[removeIndex]; // 내가 쓰지 못한 코드
     
         const modalSection = document.querySelector(".modal-section");
@@ -97,4 +97,28 @@ class ModalService1 {
         ModalEvent1.getInstance().addEventCancelClick();
         this.showModel();
       }
+}
+
+// option-box를 숨겨놓았다가 다시 꺼낼수 있도록 하는 이벤트 메소드 들어 있음
+class AsideEvent {
+  static #instance = null;
+  static getInstance() {
+    if(this.#instance == null) {
+      this.#instance = new AsideEvent();
+    }
+    return this.#instance;
+  }
+
+  // menuaside를 숨겨놓은 hidden-menu를 꺼내고 다시 숨길수 있도록 하는 메소드
+  addEventShowMenuButton() {
+    const menuButton = document.querySelector(".main-option-button");
+    menuButton.onclick = () => {
+      const menubox = document.querySelector(".option-box");
+      if(menubox.classList.contains("option-box-hidden")) {
+        menubox.classList.remove("option-box-hidden");
+      }else {
+        menubox.classList.add("option-box-hidden");
+      }
+    }
+  }
 }
