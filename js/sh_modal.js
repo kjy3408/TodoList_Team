@@ -27,19 +27,19 @@ class ModalEvent {
 
      addEventSelectClearOkClick() {
         const modalOkButton = document.querySelector(".modal-ok-button"); 
-        // const a = TodoService.getInstance().todoList
         modalOkButton.onclick = () => {
-            const a = TodoService.getInstance().clearIndex;
-            a.sort((a,b) => a-b);
-            a.reverse();
+            TodoService.getInstance().clearIndex.sort((a,b) => a-b);
+            TodoService.getInstance().clearIndex.reverse();
             console.log("clearIndex...")
-            console.log(a)
+            console.log(TodoService.getInstance().clearIndex)
             console.log("todoList...")
             console.log(TodoService.getInstance().todoList);
-            a.forEach(index => {
+            TodoService.getInstance().clearIndex.forEach(index => {
                 TodoService.getInstance().todoList.splice(index, 1);
             });
-                       
+            TodoService.getInstance().clearIndex = new Array();
+            console.log("reset clearIndex...")
+            console.log(TodoService.getInstance().clearIndex)
             TodoService.getInstance().updateLocalStorage();
             ModalService.getInstance().closeModal();
         }
