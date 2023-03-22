@@ -1,0 +1,17 @@
+.main-time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.now-time {
+    margin-bottom: -19px;
+    padding: 10px;
+    font-size: 30px;
+}
+
+.d-time {
+    margin-bottom: -100px;
+    padding: 10px;
+    font-size: 30px;
+}
