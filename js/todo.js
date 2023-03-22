@@ -10,17 +10,22 @@ class AddEvent {
     addEventCheckBox() {
         const checkButtons = document.querySelectorAll(".check-button");
         const texts = document.querySelectorAll(".text");
+        const checkboxCheckeds = document.querySelectorAll(".checkbox-checked")
         const todoList = TodoService.getInstance().todoList;
         const removeIndex = TodoService.getInstance().clearIndex;
 
         for(let i = 0; i < checkButtons.length; i++){
             if(checkButtons[i].checked){
+                texts[i].style.color = 'rgb(197, 197, 197)';
                 texts[i].style.textDecoration = 'line-through';
+                texts[i].style.textDecorationThickness = '2px';
+                
             }else {
                 texts[i].style.textDecoration = 'none';
             }
             checkButtons[i].onclick = () => {                    
                 if(checkButtons[i].checked){
+                    texts[i].style.color = 'rgb(197, 197, 197);';
                     texts[i].style.textDecoration = 'line-through';
                     todoList[i].checked = true;
                     removeIndex.push(i);
@@ -87,11 +92,11 @@ class AddEvent {
         });
     }
 
-    addEventModifyOkClick() {
+    addEventModifyClick() {
         const editButtons = document.querySelectorAll(".edit-button");
         editButtons.forEach((editButton, index) => {
             editButton.onclick = () => {
-              ModalService1.getInstance().showModifyModal(index);
+                ModalService1.getInstance().showModifyModal(index);
             };
         });
     }
@@ -146,10 +151,11 @@ class TodoService {
         // this.todoList.push(checkObj);
         this.updateLocalStorage();
         this.loadTodoList();
-     }
-     
+    }
+
      loadTodoList() {
         const mainTodoUl = document.querySelector(".main-todo-ul");
+        const checkButtons = document.querySelectorAll(".check-button");
         mainTodoUl.innerHTML = ``;
         this.todoList.forEach(todoObj => {
             mainTodoUl.innerHTML += `
@@ -175,7 +181,7 @@ class TodoService {
         
         AddEvent.getInstance().addEventCheckBox();
         AddEvent.getInstance().addEventRemoveTodoClick();
-        AddEvent.getInstance().addEventModifyOkClick();
+        AddEvent.getInstance().addEventModifyClick();
         AddEvent.getInstance().addEventAllClear();
         AddEvent.getInstance().addEventSelectClear();
     }
@@ -194,18 +200,6 @@ class TodoService {
           }
         };
       }
-
-     goToTime() {
-        const nowTime = document.querySelector(".now-time");
-        const updateNowTime = () => {
-            const nowDate = new Date();
-            nowTime.innerHTML = `
-                <h1 class="d-time">${nowDate.toLocaleTimeString()}</h1>
-            `;
-        }
-        const throttledUpdateNowTime = this.throttle(updateNowTime, 1000);
-        setInterval(throttledUpdateNowTime, 1);
-     }
 
       nowTime() {
         const convertDay = (day) => {

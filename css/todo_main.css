@@ -3,11 +3,11 @@
     margin: 100px auto;
     border: 2px solid #dbdbdb;
     width: 512px;
-    height: 513px;
-    border-radius: 10px;
-    /* background-color: white; */
+    height: 700px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
     background-color: #9c88ff;
-    /* overflow: hidden; */
 }          /* 수정 : border-radius 10px추가 , 배경색 변경, overflow 주석처리 */
 
 .main-header {
@@ -21,24 +21,24 @@
 }          /* 수정 : border-radius 10px추가 */
 
 .option-box {
-    position: absolute;
     display: flex;
     flex-direction: column;
+    position: absolute;
     align-items: center;
     justify-content: center;
+    margin-top: -4px;
     border: 2px solid #dbdbdb;
     border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-bottom-right-radius: 8px; 
     width: 80px;
-    height: 68px;
+    height: 64px;
     background-color: #9c88ff;
     right: -80px;
-    /* z-index: 999; */
-    transition: right 0.5s ease;
+    transition: right 0.5s ease;    
 }          /* 수정 : option-box 추가(기존의 all-clear-box를 담고 있는 div) */
 
 .option-box-hidden {
-    display: none;
+    right: 0px;
 }          /* 수정 : option-box를 숨겨주는 기능 */
 
 .all-clear-box {
@@ -60,40 +60,36 @@
 
 .main-option-button {
     display: flex;
+    padding: 15px 30px 21px 30px;
     border: none;
     position: absolute;
-    right: 10px;
+    right: 0px;
     z-index: 999;
     background-color: #9c88ff;
+    border-top-right-radius: 8px;
 }          /* 수정 : main-option-button 설정 추가 */
+
+.main-option-button:hover {
+    background-color: #a898f8;
+}
 
 .fa-bars {
     font-size: 28px;
     color: white;
 }          /* 수정 : main-option-button icon 설정 추가 */
 
-
-/* .all-clear {
-    background-color: gray;
-    height: 30px;
-    
-} */
-
 .main-todo-input{
     display: flex;
-    /* justify-content: space-between; */
     justify-content: center;
     align-items: center;
     margin: 0 auto;
     border-radius: 20px;
     width: 300px;
     height: 43px;
-    overflow: hidden;
 }          /* 수정 : alitgn-,margin,border-radius,overflow 추가, justify 값 변경 */
 
 .main-input {
     padding: 8px;
-    /* width: 456px; */
     text-align: center;
     width: 250px;
     height: 43px;
@@ -112,12 +108,15 @@ input::placeholder{
     line-height: 10px;
     border: none;
     height: 43px;
-    /* padding: 0px 16px; */
     padding: 5px 16px 0px;
     background-color: #4e4e4e;
     font-size: 34px;
     color: white;
 }          /* 수정 : display,justify,align,line-h,height 추가, padding,background 값 변경 */
+
+.main-input-button:hover {
+    background-color: #4e4e4e;
+}
 
 .check-button {
     display: flex;
@@ -126,9 +125,8 @@ input::placeholder{
 
 .main-todo-list {
     overflow-y: auto;
-    max-height: 372px;
+    max-height: 550px;
 }
-
 
 .main-todo-li {
     border-bottom: 1px solid #121212;
@@ -138,27 +136,33 @@ input::placeholder{
     padding: 16px ;
     padding-top: 0px;
     width: 100%;
-    height: 80px;
+    height: 150px;
     background-color: white;
 
 }          /* 수정 : border-radius, background 추가 */
 
 .check-button {
     display: flex;
+    color: rgb(197, 197, 197);
 }
 
 .main-todo-li .text {
     margin: 10px 0px 5px 0px;
     width: 416px;
-    max-height: 50px;
+    max-height: 120px;
     overflow-y: auto;
-}
-.main-todo-li .text .t{
     display: flex;
     margin-left: 8px;
+    font-size: 20px;
+}
 
-    font-size: 16px;
-    
+.checkbox-checked {
+    color: rgb(189, 189, 189);
+}
+
+.edit-input-jy {
+    width: 100%;
+    height: 50px;
 }
 
 .edit-button {
