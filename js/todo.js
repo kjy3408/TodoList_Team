@@ -23,7 +23,7 @@ class AddEvent {
                 if(checkButtons[i].checked){
                     texts[i].style.textDecoration = 'line-through';
                     todoList[i].checked = true;
-                    TodoService.getInstance().clearIndex.push(i);
+                    removeIndex.push(i);
                      
                 }else {
                     texts[i].style.textDecoration = 'none';
@@ -33,7 +33,6 @@ class AddEvent {
               
          
                 }
-                console.log(i);
                 TodoService.getInstance().updateLocalStorage();
             }
         }
@@ -55,20 +54,17 @@ class AddEvent {
             }
         }
     }
+
     addEventSelectClear() {
         const selectClear = document.querySelector(".select-clear");
-        // const removeIndex2 = TodoService.getInstance().removeIndex1;
-        const removeIndex = TodoService.getInstance().clearIndex;
-        // console.log("dddddddd: " + TodoService.getInstance().clearIndex);
-
-        removeIndex.forEach((re, index) => {
-            selectClear.onclick = () => {
-                ModalService.getInstance().showSelectClearModal(re, index);
+        
+        selectClear.onclick = () => {
+                console.log(TodoService.getInstance().clearIndex);
+                ModalService.getInstance().showSelectClearModal();
                 TodoService.getInstance().updateLocalStorage();
-            }
-        });
-
+        }
     }
+
     addEventInputButtonClick() {
        const mainInputButton = document.querySelector(".main-input-button");
        mainInputButton.onclick = () => {
@@ -95,7 +91,6 @@ class AddEvent {
             };
         });
     }
-
 }
 
 class TodoService {
@@ -108,14 +103,12 @@ class TodoService {
     }
 
     todoList = null;
-    clearIndex = null;
+    clearIndex = new Array();
 
     constructor() {
         this.nowTime();
         if(localStorage.getItem('todo-list') == null) {
             this.todoList = new Array();
-            this.clearIndex = new Array();
-
         }else {
             this.todoList = JSON.parse(localStorage.getItem('todo-list'));
         }
@@ -146,7 +139,6 @@ class TodoService {
             checked: false,
         }
 
-    
         this.todoList.push(todoObj);
         // this.todoList.push(checkObj);
         this.updateLocalStorage();

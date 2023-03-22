@@ -25,18 +25,21 @@ class ModalEvent {
         }
     }
 
-    addEventSelectClearOkClick(re, many) {
+     addEventSelectClearOkClick() {
         const modalOkButton = document.querySelector(".modal-ok-button"); 
-        // const removeIndex3 = TodoService.getInstance().removeIndex1;
-        
+        // const a = TodoService.getInstance().todoList
         modalOkButton.onclick = () => {
-            const a = TodoService.getInstance().removeIndex1;
+            const a = TodoService.getInstance().clearIndex;
+            a.sort((a,b) => a-b);
             a.reverse();
-            TodoService.getInstance().todoList.splice(re, 1);
-            a.splice(re, 1);
+            console.log("clearIndex...")
             console.log(a)
-           
-        
+            console.log("todoList...")
+            console.log(TodoService.getInstance().todoList);
+            a.forEach(index => {
+                TodoService.getInstance().todoList.splice(index, 1);
+            });
+                       
             TodoService.getInstance().updateLocalStorage();
             ModalService.getInstance().closeModal();
         }
@@ -49,7 +52,6 @@ class ModalEvent {
         }
     }
 }
-
 
 class ModalService {
     static #instance = null;
@@ -89,7 +91,7 @@ class ModalService {
         this.showModal();   
     }
 
-    showAllClearModal(re) {
+    showAllClearModal() {
         const modalSection = document.querySelector(".modal-section");
         modalSection.innerHTML = `
         <div class="modal-header">
@@ -103,13 +105,13 @@ class ModalService {
                 <button type="button" class="modal-cancel-button">취소</button>
             </div>
         `;
-        ModalEvent.getInstance().addEventAllClearOkClick(re);
+        ModalEvent.getInstance().addEventAllClearOkClick();
         ModalEvent.getInstance().addEventCancelClick();
         this.showModal();
         
     }
 
-    showSelectClearModal(re, many) {
+    showSelectClearModal() {
         const modalSection = document.querySelector(".modal-section");
         modalSection.innerHTML = `
         <div class="modal-header">
@@ -123,10 +125,9 @@ class ModalService {
                 <button type="button" class="modal-cancel-button">취소</button>
             </div>
         `;
-        ModalEvent.getInstance().addEventSelectClearOkClick(re, many);
+        
+        ModalEvent.getInstance().addEventSelectClearOkClick();
         ModalEvent.getInstance().addEventCancelClick();
         this.showModal();   
-        
     }
-
 }
