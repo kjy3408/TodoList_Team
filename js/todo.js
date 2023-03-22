@@ -146,8 +146,6 @@ class TodoService {
      }
      
      loadTodoList() {
-        this.goToTime();
-        this.nowTime();
         const mainTodoUl = document.querySelector(".main-todo-ul");
         mainTodoUl.innerHTML = ``;
         this.todoList.forEach(todoObj => {
@@ -203,7 +201,7 @@ class TodoService {
             `;
         }
         const throttledUpdateNowTime = this.throttle(updateNowTime, 1000);
-        setInterval(throttledUpdateNowTime, 1000);
+        setInterval(throttledUpdateNowTime, 1);
      }
 
       nowTime() {
@@ -212,17 +210,13 @@ class TodoService {
             const nowDate = new Date();
             this.todoList.forEach(date => {
                 nowTime.innerHTML = `
-                <div>
                     <h1 class="now-time">${nowDate.toLocaleTimeString()}</h1>
-                </div>
-                <div>
                     <h1 class="d-time">${date.todoDate}</h1>
-                </div>
                 `;
             });
         }
         const throttleUpdateNowDate = this.throttle(updateNowDate, 1000);
-        setInterval(throttleUpdateNowDate, 1000);
+        setInterval(throttleUpdateNowDate, 1);
      }
 
 }
